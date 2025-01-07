@@ -1,175 +1,137 @@
-# Getting Started
+# 📱 IoT Monitoring System
 
-### Reference Documentation
-For further reference, please consider the following sections:
+Monitore dispositivos IoT em tempo real, coletando dados, processando eventos com *Apache Kafka* e armazenando informações no *MongoDB. Aproveite o poder do **Java 21* com *Virtual Threads* para alta performance e escalabilidade. 🔥
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/3.4.1/maven-plugin)
-* [Create an OCI image](https://docs.spring.io/spring-boot/3.4.1/maven-plugin/build-image.html)
-* [Spring Web](https://docs.spring.io/spring-boot/3.4.1/reference/web/servlet.html)
-* [Spring Data MongoDB](https://docs.spring.io/spring-boot/3.4.1/reference/data/nosql.html#data.nosql.mongodb)
-* [Spring for Apache Kafka](https://docs.spring.io/spring-boot/3.4.1/reference/messaging/kafka.html)
-* [WebSocket](https://docs.spring.io/spring-boot/3.4.1/reference/messaging/websockets.html)
-* [Spring Reactive Web](https://docs.spring.io/spring-boot/3.4.1/reference/web/reactive.html)
+---
 
-### Guides
-The following guides illustrate how to use some features concretely:
+## 🚀 *Getting Started*
 
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
-* [Accessing Data with MongoDB](https://spring.io/guides/gs/accessing-data-mongodb/)
-* [Using WebSocket to build an interactive web application](https://spring.io/guides/gs/messaging-stomp-websocket/)
-* [Building a Reactive RESTful Web Service](https://spring.io/guides/gs/reactive-rest-service/)
+### 📙 *Reference Documentation*
+Consulte as documentações oficiais e guias para entender melhor os recursos utilizados:
 
-### Maven Parent overrides
+- [📦 Apache Maven Documentation](https://maven.apache.org/guides/)
+- [🚀 Spring Boot Maven Plugin Guide](https://docs.spring.io/spring-boot/docs/current/maven-plugin/)
+- [🐳 Creating an OCI Image](https://spring.io/guides/topicals/spring-boot-docker/)
+- *Spring Framework*:
+  - [🌐 Spring Web](https://spring.io/guides/gs/rest-service/)
+  - [🌿 Spring Data MongoDB](https://spring.io/projects/spring-data-mongodb)
+  - [📮 Spring for Apache Kafka](https://spring.io/projects/spring-kafka)
+  - [🔗 WebSocket](https://spring.io/guides/gs/messaging-stomp-websocket/)
+  - [🌊 Spring Reactive Web](https://spring.io/guides/gs/reactive-rest-service/)
 
-Due to Maven's design, elements are inherited from the parent POM to the project POM.
-While most of the inheritance is fine, it also inherits unwanted elements like `<license>` and `<developers>` from the parent.
-To prevent this, the project POM contains empty overrides for these elements.
-If you manually switch to a different parent and actually want the inheritance, you need to remove those overrides.
+### 📋 *Guides*
+Práticas e guias para uso dos recursos principais:
+- Criando serviços RESTful
+- Acessando dados no MongoDB
+- Construindo aplicações reativas
+- Usando WebSocket para interatividade em tempo real
 
-### Explanation (PT-BR)
+---
 
-O sistema monitora dispositivos IoT, coletando dados em tempo real e armazenando-os no MongoDB. O Kafka é utilizado como um mecanismo de mensageria para garantir a escalabilidade e a entrega de mensagens.
+## 🔍 *Features*
 
-Características principais:
+### *📦 Backend Core*
+- *Java 21*:
+  - *Virtual Threads* para alta concorrência
+  - Melhorias no Garbage Collector para performance
+- *Spring Boot*:
+  - APIs REST com documentação Swagger
+  - Processamento assíncrono com Kafka
+  - WebSocket para notificações em tempo real
+- *MongoDB*:
+  - Flexibilidade no schema e escalabilidade
 
--> Uso de Virtual Threads do Java 21
--> Tratamento de erros robusto
--> Logs adequados
--> Configuração de tópicos (mensageria)
--> Headers Kafka para metadados
--> Processamento assíncrono
--> WebSocket para notificações em tempo real
--> Segurança
--> Documentação API
--> CORS
--> Métricas
--> Logging
+### *📱 Kafka Integration*
+- Configuração de tópicos e policies de retenção
+- Processamento distribuído e escalável
+- Integração com WebSocket para updates em tempo real
 
-A estrutura Kafka implementada permite:
+### *🛠 Arquitetura Modular*
+- Camadas bem definidas:
+  - *Config*: Configurações do sistema
+  - *Controller*: APIs REST
+  - *Domain*: Modelos, DTOs e validações
+  - *Repository*: Acesso a dados
+  - *Service*: Lógica de negócios
+  - *Simulation*: Simulação de dispositivos IoT
 
--> Processamento distribuído
--> Alta disponibilidade
--> Escalabilidade horizontal
--> Monitoramento em tempo real
--> Processamento assíncrono de eventos
--> Integração com WebSocket para updates em tempo real
+---
 
-O kafka/config/KafkaTopicConfig:
-Cria e configura os tópicos Kafka, define número de partições, define políticas de retenção, define configurações específicas dos tópicos.
+## 🛠️ *Estrutura e Boas Práticas*
 
-O config/KafkaConfig:
-Configura as factories de Producer e Consumer, define configurações de serialização/deserialização, configura aspectos básicos de conexão e comportamento do Kafka.
+### 🧬 *Arquitetura DDD*
+- *Domain Layer*:
+  - Uso de records para imutabilidade
+  - Validações com Bean Validation
+  - Value Objects para encapsular conceitos
+- *Repositories*:
+  - Operações CRUD com MongoRepository
+  - Queries customizadas com @Query
+- *Services*:
+  - Uso de @Transactional e logging com @Slf4j
+  - Princípio da Responsabilidade Única (SRP)
 
-O MongoDB permite:
+### 🧮 *Simulation Package*
+- Simula dispositivos IoT reais:
+  - Geração de métricas
+  - Configurável por profiles
+  - Testes de carga e validação de alertas
 
--> Flexibilidade no schema
--> Queries ricas
--> Boa performance
--> Escalabilidade
+### 📂 *Resources*
+- Configurações específicas por ambiente
+- Uso de variáveis de ambiente
+- Configuração de segurança e logging
+- Documentação OpenAPI disponível:
+  - [Swagger UI](http://localhost:8080/swagger-ui.html)
+  - [OpenAPI JSON](http://localhost:8080/v3/api-docs)
 
-O Java 21 permite:
+---
 
--> Virtual Threads (Fibers) que introduziu as "fibras", que permitem a criação de milhares de threads leves, ideal para aplicações com alta concorrência, como o processamento de dados em tempo real de diversos dispositivos IoT
--> Melhorias no garbage collector e na alocação de memória que contribuem para um melhor desempenho e menor consumo de recursos
+## 🌟 *Como Rodar o Projeto*
 
---------------------------------------------------------------
+1. Clone este repositório:
+   bash
+   git clone https://github.com/muriced/iot-monitoring-system.git
+   
+2. Navegue até o diretório:
+   bash
+   cd projeto-iot
+   
+3. Compile e rode:
+   bash
+   mvn clean install
+   mvn spring-boot:run
+   
 
-A estrutura segue boas práticas como:
+4. Ative o *profile de simulação* (opcional):
+   yaml
+   spring:
+     profiles:
+       active: simulation
+   
 
--> Separação clara de responsabilidades
--> Organização por camadas
--> Modularização do código
--> Facilidade de navegação
--> Padrões de nomenclatura consistentes
+---
 
-Cada pacote tem uma responsabilidade específica:
+## 📊 *Principais Tecnologias*
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+![Kafka](https://img.shields.io/badge/Apache%20Kafka-231F20?style=for-the-badge&logo=apache-kafka&logoColor=white)
+![WebSocket](https://img.shields.io/badge/WebSocket-0088CC?style=for-the-badge&logo=websocket&logoColor=white)
 
--> config/ - Configurações do sistema
--> controller/ - APIs REST
--> domain/ - Classes de domínio e DTOs
--> repository/ - Acesso a dados
--> service/ - Lógica de negócios
--> kafka/ - Integração com Apacha Kafka
--> simulation/ - Classes de simulação de dispositivos IoT
--> resorces/ - Arquivos .yaml de perfis de configuração utilizados em aplicações Spring Boot para definir as propriedades e configurações da aplicação. 
+---
 
-Todos os (controllers) usam e seguem:
+## 📝 *Contribuição*
+Contribuições são bem-vindas! Siga os passos:
+1. Faça um fork do repositório
+2. Crie uma branch:
+   bash
+   git checkout -b feature/nova-funcionalidade
+   
+3. Submeta seu PR 🎉
 
--> Injeção de dependência
--> Documentação OpenAPI/Swagger
--> Tratamento adequado de respostas HTTP
--> Validação de dados
--> Paginação quando apropriado
--> Tratamento de exceções
--> Endpoints RESTful
--> Princípio da Responsabilidade Única
+---
 
-Características importantes do domain/:
+💡 *Dica*: Sempre consulte os logs gerados para validar as configurações e monitorar o desempenho.
 
--> Uso de records do Java para imutabilidade
--> Validações com Bean Validation
--> Documentação MongoDB
--> DTOs separados para requests e responses
--> Value Objects para encapsular conceitos do domínio
--> Exceptions
--> Classes de (eventos) para comunicação assíncrona
--> Separa claramente os conceitos
--> Facilita a validação
--> Permite evolução do modelo
--> Mantém a coesão
--> Facilita a manutenção
--> Segue princípios DDD
-
-Cada (repository):
-
--> Estende MongoRepository para operações básicas de CRUD
--> Usa @Repository para indicar que é um bean de repositório
--> Define métodos específicos usando convenção de nomes
--> Usa @Query para queries mais complexas
--> Inclui paginação quando necessário
--> Oferece flexibilidade nas consultas
-
-Cada (service):
-
--> Usa @Service para indicar que é um bean de serviço
--> Usa @Transactional para operações que modificam os dados
--> Tem injeção de dependências com @RequiredArgsConstructor
--> Usa logging com @Slf4j
--> Implementa regras de negócio específicas (Princípio)
--> Coordena interações entre repositories e outros serviços
-
-Características do pacote simulation/:
-
--> Simula dispositivos IoT reais
--> Gera leituras periódicas
--> Cria anomalias aleatórias
--> Usa scheduling do Spring
--> Configurável por profile
--> Gera diferentes tipos de métricas
--> Logging apropriado
-
-O simulador é útil para:
-Testes do sistema, demonstrações, desenvolvimento, testes de carga, validação de alertas, verificação de processamento em tempo real
-
-Para ativar a simulação, você pode usar o profile "simulation" nos arquivos .yaml:
-spring:
-  profiles:
-    active: simulation
-
-Características do pacote resources/:
-
--> Configurações específicas por ambiente
--> Configurações de segurança apropriadas
--> Configurações de logging
--> Propriedades da aplicação
--> Recursos estáticos
--> Banners personalizados
--> Uso de variáveis de ambiente em produção
-
-Você pode acessar a documentação Swagger em:
-
-http://localhost:8080/swagger-ui.html
-http://localhost:8080/v3/api-docs (formato JSON)
+---

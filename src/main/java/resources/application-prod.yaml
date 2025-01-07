@@ -1,0 +1,29 @@
+spring:
+  data:
+    mongodb:
+      host: ${MONGO_HOST}
+      port: ${MONGO_PORT}
+      database: iotdb-prod
+      username: ${MONGO_USER}
+      password: ${MONGO_PASSWORD}
+
+  kafka:
+    bootstrap-servers: ${KAFKA_SERVERS}
+    security:
+      protocol: SSL
+
+logging:
+  level:
+    root: WARN
+    io.github.muriced: INFO
+  file:
+    name: /var/log/iot-monitoring/application.log
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics,info
+  endpoint:
+    health:
+      show-details: when_authorized

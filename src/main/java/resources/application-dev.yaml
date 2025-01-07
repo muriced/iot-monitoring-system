@@ -1,0 +1,22 @@
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: iotdb-dev
+      username: admin
+      password: password
+
+  kafka:
+    bootstrap-servers: localhost:9092
+
+logging:
+  level:
+    io.github.muriced: DEBUG
+    org.springframework: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

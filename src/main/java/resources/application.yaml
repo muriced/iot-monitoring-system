@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: iot-monitoring-system
+  
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: iotdb
+      username: admin
+      password: password
+  
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      group-id: iot-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+    io.github.muriced: DEBUG
+    org.springframework.data.mongodb: INFO
+    org.apache.kafka: WARN
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics,info
